@@ -1,0 +1,17 @@
+{
+  "manifest_version": 2,
+  "background": {
+    "persistent": false,
+    "scripts": [ "script.js" ]
+  },
+  "name": "chromapod",
+  "description": "Let's put some space in your new tabs!",
+  "version": "1.0",
+  "chrome_url_overrides" : {
+    "newtab" : "chromapod.html"
+  },
+  "permissions": [ 
+    "tabs",
+    "storage"
+  ]
+}
