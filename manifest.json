@@ -6,7 +6,7 @@
   },
   "name": "chromapod",
   "description": "Let's put some space in your new tabs!",
-  "version": "1.0",
+  "version": "1.1",
   "chrome_url_overrides" : {
     "newtab" : "chromapod.html"
   },

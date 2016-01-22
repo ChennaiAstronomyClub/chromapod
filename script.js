@@ -11,11 +11,12 @@ $(document).ready(function() {
         var apod = JSON.parse(localStorage.getItem('apod')),
             title = apod['title'],
             description = apod['explanation'],
-            url = apod['url']; 
+            url = apod['url'],
+            copyright = apod['copyright']; 
 
         $("#apod").attr("src", url);
         $('#title').html(title);
-        $('#description').html(description); 
+        $('#description').html(description + '<br>Copyright: ' + copyright); 
 
     }
 
@@ -30,7 +31,8 @@ $(document).ready(function() {
                 apod = response;
                 var title = apod['title'],
                     description = apod['explanation'],
-                    url = apod['url']; 
+                    url = apod['url'],
+                    copyright = apod['copyright'];  
 
                 // Save API response in localStorage along with date to avoid API calls on every new tab.
                 localStorage.setItem('apod', JSON.stringify(apod));
@@ -38,7 +40,7 @@ $(document).ready(function() {
 
                 $("#apod").attr("src", url);
                 $('#title').html(title);
-                $('#description').html(description);   
+                $('#description').html(description + '<br>Copyright: ' + copyright);
 
             },
             error: function() {
@@ -53,7 +55,7 @@ $(document).ready(function() {
 
     }
 
-    $('#info-icon').click(function() {
+    $('#info-icon').hover(function() {
         document.getElementById('info-dialog').showModal();
     }); 
 
