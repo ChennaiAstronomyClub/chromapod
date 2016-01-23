@@ -2,7 +2,7 @@ $(document).ready(function() {
 
     var API = 'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY',
         date = new Date(),
-        todaysDate = (date.getMonth() + 1).toString() + date.getDate().toString(),
+        todaysDate = (date.getUTCMonth() + 1).toString() + date.getUTCDate().toString(),
         apodDate = localStorage.getItem('apodDate');
 
     // Use the API response in localStorage if the API response has already been obtained.
@@ -56,11 +56,11 @@ $(document).ready(function() {
     }
 
     $('#info-icon').hover(function() {
-        document.getElementById('info-dialog').showModal();
+        $('info-dialog')[0].showModal();
     }); 
 
     $('#info-dialog').click(function() {
-        document.getElementById('info-dialog').close();
+        $('info-dialog')[0].close();
     }); 
 
 });
