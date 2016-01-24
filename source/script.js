@@ -2,7 +2,9 @@ $(document).ready(function() {
 
     var API = 'https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY',
         date = new Date(),
-        todaysDate = (date.getUTCMonth() + 1).toString() + date.getUTCDate().toString(),
+        delayedDate = new Date(date.getTime() - 10*60000),
+        dateString = delayedDate.toLocaleString('en-US', { timeZone: 'America/New_York' }),
+        todaysDate = dateString.split(',')[0]
         apodDate = localStorage.getItem('apodDate');
 
     // Use the API response in localStorage if the API response has already been obtained.
@@ -12,11 +14,11 @@ $(document).ready(function() {
             title = apod['title'],
             description = apod['explanation'],
             url = apod['url'],
-            copyright = apod['copyright']; 
+            copyright = ((apod['copyright'] === undefined) ? '' : '<br>Copyright: ' + apod['copyright']); 
 
         $("#apod").attr("src", url);
         $('#title').html(title);
-        $('#description').html(description + '<br>Copyright: ' + copyright); 
+        $('#description').html(description + copyright); 
 
     }
 
@@ -32,7 +34,7 @@ $(document).ready(function() {
                 var title = apod['title'],
                     description = apod['explanation'],
                     url = apod['url'],
-                    copyright = apod['copyright'];  
+                    copyright = ((apod['copyright'] === undefined) ? '' : '<br>Copyright: ' + apod['copyright']); 
 
                 // Save API response in localStorage along with date to avoid API calls on every new tab.
                 localStorage.setItem('apod', JSON.stringify(apod));
@@ -40,7 +42,7 @@ $(document).ready(function() {
 
                 $("#apod").attr("src", url);
                 $('#title').html(title);
-                $('#description').html(description + '<br>Copyright: ' + copyright);
+                $('#description').html(description + copyright);
 
             },
             error: function() {
@@ -56,11 +58,11 @@ $(document).ready(function() {
     }
 
     $('#info-icon').hover(function() {
-        $('info-dialog')[0].showModal();
+        document.getElementById('info-dialog').showModal();
     }); 
 
     $('#info-dialog').click(function() {
-        $('info-dialog')[0].close();
+        document.getElementById('info-dialog').close();
     }); 
 
 });
