@@ -16,7 +16,14 @@ $(document).ready(function() {
             url = apod['url'],
             copyright = ((apod['copyright'] === undefined) ? '' : '<br>Copyright: ' + apod['copyright']); 
 
-        $("#apod").attr("src", url);
+        if (url.indexOf('youtube') == -1) {
+            $("#apod").attr("src", url);
+        }
+        else {
+            $("img").replaceWith('<iframe id="apod" src="' + 
+                url + '" style="border: 0; top:0; left:0; right:0; bottom:0; width:100%; height:100%;position: fixed;"></iframe>');
+        }
+        
         $('#title').html(title);
         $('#description').html(description + copyright); 
 
