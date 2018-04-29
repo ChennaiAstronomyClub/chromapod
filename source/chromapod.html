@@ -2,15 +2,23 @@
 <html>
   <head>
     <link href="styles.css" type="text/css" rel="stylesheet" />
-    <script src="jquery.js" type="text/javascript"></script>
-    <script src="script.js" type="text/javascript"></script>
+    <style>
+      .apod-iframe {
+        border: none;
+        width:100%;
+        height:100%;
+        position: fixed;
+      }
+    </style>
   </head>
   <body>
-    <img id="apod" src=''>
+    <img id="apod" src="">
     <div id="info-icon">Tell me more</div>
     <dialog id="info-dialog">
       <div id="title"></div>
       <div id="description"></div>
     </dialog>
+    <script src="jquery.js" type="text/javascript"></script>
+    <script src="script.js" type="text/javascript"></script>
   </body>
 </html>
